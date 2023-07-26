@@ -54,7 +54,7 @@ Container.2.Name=redis
 - 缓存
 - 负载均衡
 - 限流
-- 超时，重试，幂等
+- 超时，重试，幂等。
 需要实现的功能
 1.实现类Nginx请求转发功能
 自动化测试的请求只会打到trade-order-gateway，需在trade-order-gateway上实现负载均衡算法并转发请求至后端trade-order-api。
@@ -70,16 +70,13 @@ test_trade: ksc_trade_order | ksc_trade_product_config
 基于三方接口查询机房名称，并对外暴露API。
 要实现的对外暴露API的结构请求上下文，该接口不稳定，必须采用重试机制。
 4.订单优惠券抵扣公摊
-备注: URL开头/online/voucher/deduct,  以文档为准
-一个订单的金额(price)可使用多张优惠券。基本业务逻辑，使用redis缓存即可。
+备注: URL开头/online/voucher/deduct,  以文档为准，一个订单的金额(price)可使用多张优惠券。基本业务逻辑，使用redis缓存即可。
 5.基于Redis实现漏桶限流算法，并在API调用上体现
 QPS：5　（每秒支持5个请求）
 限流算法：漏桶
-限流组件：Redis，不借助第三方框架来实现，自己的实现思路及过程可以写在readme.md上（可以在readme.md上辅助图片，自己测试的过程截图等）。
-这个接口只在gateway模块实现即可。实习方式：漏桶算法加redis缓存加lua脚本。
+限流组件：Redis，不借助第三方框架来实现，自己的实现思路及过程可以写在readme.md上（可以在readme.md上辅助图片，自己测试的过程截图等）。这个接口只在gateway模块实现即可。实习方式：漏桶算法加redis缓存加lua脚本。
 6.简单的链路跟踪实现
-traceId用于标识某一次具体的请求ID，通过它可以将一次用户请求在系统中调用的路径串联起来，
-批改作业的时候header中会固定传递X-KSY-REQUEST-ID
+traceId用于标识某一次具体的请求ID，通过它可以将一次用户请求在系统中调用的路径串联起来，批改作业的时候header中会固定传递X-KSY-REQUEST-ID
 要求：X-KSY-REQUEST-ID(注意客户端传递的是文档描述的这个关键字)体现在接口响应的reqeustId上，同时在日志调用链中体现。
 
 

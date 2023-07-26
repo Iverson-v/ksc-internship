@@ -50,12 +50,8 @@ Container.2.Name=redis
 
 三、trade-order-service
 需求：完成基础的Java工程化项目，实现相关接口，考虑部分容错机制。
-应关注的核心问题
-- 缓存
-- 负载均衡
-- 限流
-- 超时，重试，幂等。
-需要实现的功能
+应关注的核心问题- 缓存- 负载均衡- 限流- 超时，重试，幂等。
+需要实现的功能：
     1.实现类Nginx请求转发功能
 自动化测试的请求只会打到trade-order-gateway，需在trade-order-gateway上实现负载均衡算法并转发请求至后端trade-order-api。具体业务功能实现在trade-order-api模块上。
     2.查询订单详情

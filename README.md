@@ -55,10 +55,9 @@ Container.2.Name=redis
     1.实现类Nginx请求转发功能
 自动化测试的请求只会打到trade-order-gateway，需在trade-order-gateway上实现负载均衡算法并转发请求至后端trade-order-api。具体业务功能实现在trade-order-api模块上。
     2.查询订单详情
-MYSQL库及表
-test_trade: ksc_trade_order | ksc_trade_product_config
+MYSQL库及表：test_trade: ksc_trade_order | ksc_trade_product_config
 订单包含订单信息(200w) | 订单配置信息(200w) | 用户信息(20w) | 机房信息(100)
-接口说明
+接口说明：
 用户查询接口: /online/user/{id},  本接口响应时间强制控制在2s以上  
 机房查询接口: /online/region/list,  本接口响应时间强制控制在4s以上，可以使用异步查询+redis缓存。
     3.根据机房Id查询机房名称

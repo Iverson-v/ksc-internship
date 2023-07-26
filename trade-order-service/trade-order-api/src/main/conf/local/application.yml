@@ -1,0 +1,68 @@
+server:
+  port: 8089
+  tomcat:
+    threads:
+      max: 20 # 最大工作线程数，默认200，超过加入等待队列，默认是100，当等待队列达到100后， 直接拒绝此次请求返回connection refused。
+      min-spare: 5  # 最小工作线程数
+    max-connections: 30  # 最大连接数,默认8192，tomcat内tcp连接池的大小
+    accept-count: 10 # 挂起的请求队列最大连接数，默认100
+    connection-timeout: 60s  # server端的socket超时间，默认60s
+
+info:
+  app:
+    name: trade-order-api
+    env: local
+    ver: v0.0.1
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test_trade?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    maximum-pool-size: 3
+    minimum-idle: 2
+    username: root
+    password: root
+#    url: jdbc:mysql://campus-dev.mysql.ksyun.com:63265/test_trade?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    maximum-pool-size: 3
+#    minimum-idle: 2
+#    username: test
+#    password: test123
+
+
+#  redis:
+#    host: campus-dev.redis.ksyun.com
+#    port: 26356
+#    password: TkSbRi%xQtFkEX98BQR3yQ==
+#    db: 3
+
+
+  redis: #redis整合
+    host: localhost  #q380w42329.imdo.co
+    port: 6379
+    password: 123456
+    database: 3
+
+  mvc:  #在springboot2.6.X结合swagger2.9.X会提示documentationPluginsBootstrapper空指针异常，
+    #原因是在springboot2.6.X中将SpringMVC默认路径匹配策略MAntPathMatcher更改为athPatternParser,
+    #导致出错，解决办法是matching-strategy 切换回之前ant_path_matcher
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  swagger2:
+    enabled: true
+
+
+#Mybatis日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+
+
+actions: http://campus.query1.ksyun.com:8089,http://campus.query2.ksyun.com:8089
+meta:
+  url: http://campus.meta.ksyun.com:8090
+
+

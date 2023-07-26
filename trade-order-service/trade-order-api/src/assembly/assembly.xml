@@ -1,0 +1,49 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+    <id>package</id>
+    <!-- 打包成zip-->
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <!-- 将第三方依赖打包到lib目录中 -->
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+    <fileSets>
+        <!--
+          0755->即用户具有读/写/执行权限，组用户和其它用户具有读写权限；
+          0644->即用户具有读写权限，组用户和其它用户具有只读权限；
+        -->
+
+        <!-- 将src/bin目录下的所有文件输出到打包后的bin目录中 -->
+        <fileSet>
+            <outputDirectory>bin</outputDirectory>
+            <directory>src/bin</directory>
+            <fileMode>0755</fileMode>
+            <lineEnding>unix</lineEnding>
+            <filtered>true</filtered>
+            <useDefaultExcludes>true</useDefaultExcludes>
+        </fileSet>
+        <fileSet>
+            <outputDirectory>resources</outputDirectory>
+            <directory>src/main/resources</directory>
+            <fileMode>0644</fileMode>
+            <lineEnding>unix</lineEnding>
+            <filtered>false</filtered>
+            <useDefaultExcludes>true</useDefaultExcludes>
+        </fileSet>
+
+        <fileSet>
+            <outputDirectory>conf</outputDirectory>
+            <directory>src/main/conf</directory>
+            <fileMode>0644</fileMode>
+            <lineEnding>unix</lineEnding>
+            <filtered>false</filtered>
+            <useDefaultExcludes>true</useDefaultExcludes>
+        </fileSet>
+    </fileSets>
+</assembly>
